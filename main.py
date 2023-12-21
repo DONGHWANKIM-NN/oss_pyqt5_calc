@@ -18,7 +18,6 @@ class Main(QDialog):
         layout_number = QGridLayout()
         layout_equation_solution = QFormLayout()
 
-
         
         # issue 1번(#1) 숫자 입력 / 표시 부분 통합
         ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
@@ -30,40 +29,39 @@ class Main(QDialog):
 
 
 
-        ### 사칙연상 버튼 생성
+
+        ### 사칙연산 버튼 및 equal(=), clear, backspace 버튼 생성 (기존 나눠져 있던 부분 통합)
         button_plus = QPushButton("+")
         button_minus = QPushButton("-")
         button_product = QPushButton("x")
         button_division = QPushButton("/")
-
-
-        ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정
-        button_plus.clicked.connect(lambda state, operation = "+": self.button_operation_clicked(operation))
-        button_minus.clicked.connect(lambda state, operation = "-": self.button_operation_clicked(operation))
-        button_product.clicked.connect(lambda state, operation = "*": self.button_operation_clicked(operation))
-        button_division.clicked.connect(lambda state, operation = "/": self.button_operation_clicked(operation))
-
-
-        ### 사칙연산 버튼을 layout_operation 레이아웃에 추가
-        layout_operation.addWidget(button_plus)
-        layout_operation.addWidget(button_minus)
-        layout_operation.addWidget(button_product)
-        layout_operation.addWidget(button_division)
-
-
-        ### =, clear, backspace 버튼 생성
+        
         button_equal = QPushButton("=")
         button_clear = QPushButton("Clear")
         button_backspace = QPushButton("Backspace")
 
 
+
+        ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정
         ### =, clear, backspace 버튼 클릭 시 시그널 설정
+        button_plus.clicked.connect(lambda state, operation = "+": self.button_operation_clicked(operation))
+        button_minus.clicked.connect(lambda state, operation = "-": self.button_operation_clicked(operation))
+        button_product.clicked.connect(lambda state, operation = "*": self.button_operation_clicked(operation))
+        button_division.clicked.connect(lambda state, operation = "/": self.button_operation_clicked(operation))
+
         button_equal.clicked.connect(self.button_equal_clicked)
         button_clear.clicked.connect(self.button_clear_clicked)
         button_backspace.clicked.connect(self.button_backspace_clicked)
 
 
+
+        ### 사칙연산 버튼을 layout_operation 레이아웃에 추가
         ### =, clear, backspace 버튼을 layout_clear_equal 레이아웃에 추가
+        layout_operation.addWidget(button_plus)
+        layout_operation.addWidget(button_minus)
+        layout_operation.addWidget(button_product)
+        layout_operation.addWidget(button_division)
+
         layout_clear_equal.addWidget(button_clear)
         layout_clear_equal.addWidget(button_backspace)
         layout_clear_equal.addWidget(button_equal)
