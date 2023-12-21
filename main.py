@@ -10,6 +10,9 @@ class Main(QDialog):
 
     def init_ui(self):
         main_layout = QVBoxLayout()
+        
+        integratelayout1_layout = QVBoxLayout()
+        integratelayout2_layout = QHBoxLayout()
 
 
         ### 각 위젯을 배치할 레이아웃을 미리 만들어 둠
@@ -55,13 +58,13 @@ class Main(QDialog):
 
         ### 사칙연산 버튼을 layout_operation 레이아웃에 추가
         ### =, clear, backspace 버튼을 layout_clear_equal 레이아웃에 추가
-        layout_operation.addWidget(button_plus, 4, 3)
-        layout_operation.addWidget(button_minus, 3, 3)
-        layout_operation.addWidget(button_product, 2, 3)
-        layout_operation.addWidget(button_division, 1, 3)
+        layout_operation.addWidget(button_plus, 4, 0)
+        layout_operation.addWidget(button_minus, 3, 0)
+        layout_operation.addWidget(button_product, 2, 0)
+        layout_operation.addWidget(button_division, 1, 0)
 
-        layout_clear_equal.addWidget(button_backspace, 0, 3)
-        layout_clear_equal.addWidget(button_equal, 5, 3)
+        layout_operation.addWidget(button_backspace, 0, 0)
+        layout_operation.addWidget(button_equal, 5, 0)
 
 
 
@@ -72,7 +75,7 @@ class Main(QDialog):
         button_Clear = QPushButton("C")
         button_inverse = QPushButton("1/x")
         button_pow = QPushButton("x^2")
-        button_root = QPushButton("2√x")
+        button_root = QPushButton("√x")
 
 
         ### %, C, CE, 1/x, x^2, 2√x 버튼을 layout_clear_equal 레이아웃에 추가
@@ -111,10 +114,15 @@ class Main(QDialog):
 
 
         ### 각 레이아웃을 main_layout 레이아웃에 추가
+        integratelayout1_layout.addLayout(layout_clear_equal)
+        integratelayout1_layout.addLayout(layout_number)
+        
+        integratelayout2_layout.addLayout(integratelayout1_layout)
+        integratelayout2_layout.addLayout(layout_operation)
+        
         main_layout.addLayout(layout_equation_solution)
-        main_layout.addLayout(layout_operation)
-        main_layout.addLayout(layout_clear_equal)
-        main_layout.addLayout(layout_number)
+        main_layout.addLayout(integratelayout2_layout)
+        
 
         self.setLayout(main_layout)
         self.show()
