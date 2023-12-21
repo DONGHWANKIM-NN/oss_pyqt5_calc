@@ -30,11 +30,16 @@ class Main(QDialog):
 
 
 
-        ### 사칙연상 버튼 생성
+        ### 사칙연산 버튼 및 equal(=), clear, backspace 버튼 생성 (기존 나눠져 있던 부분 통합)
         button_plus = QPushButton("+")
         button_minus = QPushButton("-")
         button_product = QPushButton("x")
         button_division = QPushButton("/")
+        
+        button_equal = QPushButton("=")
+        button_clear = QPushButton("Clear")
+        button_backspace = QPushButton("Backspace")
+
 
 
         ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정
@@ -49,12 +54,6 @@ class Main(QDialog):
         layout_operation.addWidget(button_minus)
         layout_operation.addWidget(button_product)
         layout_operation.addWidget(button_division)
-
-
-        ### =, clear, backspace 버튼 생성
-        button_equal = QPushButton("=")
-        button_clear = QPushButton("Clear")
-        button_backspace = QPushButton("Backspace")
 
 
         ### =, clear, backspace 버튼 클릭 시 시그널 설정
