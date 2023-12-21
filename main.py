@@ -12,6 +12,7 @@ class Main(QDialog):
         main_layout = QVBoxLayout()
 
 
+
         ### 각 위젯을 배치할 레이아웃을 미리 만들어 둠
         layout_operation = QGridLayout()
         layout_clear_equal = QGridLayout()
@@ -30,6 +31,7 @@ class Main(QDialog):
 
 
 
+
         ### 사칙연산 버튼 및 equal(=), backspace 버튼 생성 (기존 나눠져 있던 부분 통합)
         button_plus = QPushButton("+")
         button_minus = QPushButton("-")
@@ -38,7 +40,6 @@ class Main(QDialog):
         
         button_equal = QPushButton("=")
         button_backspace = QPushButton("Backspace")
-
 
 
         ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정
@@ -52,7 +53,6 @@ class Main(QDialog):
         button_backspace.clicked.connect(self.button_backspace_clicked)
 
 
-
         ### 사칙연산 버튼을 layout_operation 레이아웃에 추가
         ### =, clear, backspace 버튼을 layout_clear_equal 레이아웃에 추가
         layout_operation.addWidget(button_plus, 4, 3)
@@ -62,6 +62,8 @@ class Main(QDialog):
 
         layout_clear_equal.addWidget(button_backspace, 0, 3)
         layout_clear_equal.addWidget(button_equal, 5, 3)
+
+
 
 
 
@@ -84,6 +86,10 @@ class Main(QDialog):
         layout_clear_equal.addWidget(button_root,1 ,2)
 
 
+
+
+
+
         ### 숫자 버튼 생성하고, layout_number 레이아웃에 추가
         ### 각 숫자 버튼을 클릭했을 때, 숫자가 수식창에 입력 될 수 있도록 시그널 설정
         number_button_dict = {}
@@ -99,6 +105,9 @@ class Main(QDialog):
 
 
 
+
+
+
         ### 소숫점 버튼과 00 버튼을 입력하고 시그널 설정
         button_dot = QPushButton(".")
         button_dot.clicked.connect(lambda state, num = ".": self.number_button_clicked(num))
@@ -107,6 +116,9 @@ class Main(QDialog):
         button_double_zero = QPushButton("00")
         button_double_zero.clicked.connect(lambda state, num = "00": self.number_button_clicked(num))
         layout_number.addWidget(button_double_zero, 5, 0)
+
+
+
 
 
 
