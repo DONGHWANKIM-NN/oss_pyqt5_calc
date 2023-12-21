@@ -18,7 +18,6 @@ class Main(QDialog):
         layout_number = QGridLayout()
         layout_equation_solution = QFormLayout()
 
-
         
         # issue 1번(#1) 숫자 입력 / 표시 부분 통합
         ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
@@ -27,6 +26,7 @@ class Main(QDialog):
         ### layout_equation_solution 레이아웃에 수식, 답 위젯을 추가
         layout_equation_solution.addRow(label_SumIO, self.SumIO)
     
+
 
 
 
@@ -55,14 +55,13 @@ class Main(QDialog):
 
 
 
-
         ### 사칙연산 버튼을 layout_operation 레이아웃에 추가
+        ### =, clear, backspace 버튼을 layout_clear_equal 레이아웃에 추가
         layout_operation.addWidget(button_plus)
         layout_operation.addWidget(button_minus)
         layout_operation.addWidget(button_product)
         layout_operation.addWidget(button_division)
 
-        ### =, clear, backspace 버튼을 layout_clear_equal 레이아웃에 추가
         layout_clear_equal.addWidget(button_clear)
         layout_clear_equal.addWidget(button_backspace)
         layout_clear_equal.addWidget(button_equal)
