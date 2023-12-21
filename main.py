@@ -49,7 +49,6 @@ class Main(QDialog):
         button_division.clicked.connect(lambda state, operation = "/": self.button_operation_clicked(operation))
 
         button_equal.clicked.connect(self.button_equal_clicked)
-        button_clear.clicked.connect(self.button_clear_clicked)
         button_backspace.clicked.connect(self.button_backspace_clicked)
 
 
@@ -61,7 +60,6 @@ class Main(QDialog):
         layout_operation.addWidget(button_product, 2, 3)
         layout_operation.addWidget(button_division, 1, 3)
 
-        layout_clear_equal.addWidget(button_clear, 0, 2)
         layout_clear_equal.addWidget(button_backspace, 0, 3)
         layout_clear_equal.addWidget(button_equal, 5, 3)
 
@@ -77,7 +75,13 @@ class Main(QDialog):
         button_root = QPushButton("2√x")
 
 
-
+        ### %, C, CE, 1/x, x^2, 2√x 버튼을 layout_clear_equal 레이아웃에 추가
+        layout_clear_equal.addWidget(button_rest, 0 ,0)
+        layout_clear_equal.addWidget(button_Clear, 0, 1)
+        layout_clear_equal.addWidget(button_ClearEntry,0 ,2)
+        layout_clear_equal.addWidget(button_inverse, 1 ,0)
+        layout_clear_equal.addWidget(button_pow, 1, 1)
+        layout_clear_equal.addWidget(button_root,1 ,2)
 
 
         ### 숫자 버튼 생성하고, layout_number 레이아웃에 추가
