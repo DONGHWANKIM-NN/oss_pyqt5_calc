@@ -30,14 +30,13 @@ class Main(QDialog):
 
 
 
-        ### 사칙연산 버튼 및 equal(=), clear, backspace 버튼 생성 (기존 나눠져 있던 부분 통합)
+        ### 사칙연산 버튼 및 equal(=), backspace 버튼 생성 (기존 나눠져 있던 부분 통합)
         button_plus = QPushButton("+")
         button_minus = QPushButton("-")
         button_product = QPushButton("x")
         button_division = QPushButton("/")
         
         button_equal = QPushButton("=")
-        button_clear = QPushButton("Clear")
         button_backspace = QPushButton("Backspace")
 
 
@@ -65,6 +64,18 @@ class Main(QDialog):
         layout_clear_equal.addWidget(button_clear, 0, 2)
         layout_clear_equal.addWidget(button_backspace, 0, 3)
         layout_clear_equal.addWidget(button_equal, 5, 3)
+
+
+
+
+        ### %, C, CE, 1/x, x^2, 2√x 버튼 생성
+        button_rest = QPushButton("%")
+        button_ClearEntry = QPushButton("CE")
+        button_Clear = QPushButton("C")
+        button_inverse = QPushButton("1/x")
+        button_pow = QPushButton("x^2")
+        button_root = QPushButton("2√x")
+
 
 
 
