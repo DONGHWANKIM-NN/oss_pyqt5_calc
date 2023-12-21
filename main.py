@@ -15,15 +15,16 @@ class Main(QDialog):
         layout_number = QGridLayout()
         layout_equation_solution = QFormLayout()
 
-        ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
-        label_equation = QLabel("Equation: ")
-        label_solution = QLabel("Solution: ")
-        self.equation = QLineEdit("")
-        self.solution = QLineEdit("")
 
+        
+        # issue 1번(#1) 숫자 입력 / 표시 부분 통합
+        ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
+        label_SumIO = QLabel("Line: ")
+        self.SumIO = QLineEdit("")
         ### layout_equation_solution 레이아웃에 수식, 답 위젯을 추가
-        layout_equation_solution.addRow(label_equation, self.equation)
-        layout_equation_solution.addRow(label_solution, self.solution)
+        layout_equation_solution.addRow(label_SumIO, self.SumIO)
+        
+        
 
         ### 사칙연상 버튼 생성
         button_plus = QPushButton("+")
