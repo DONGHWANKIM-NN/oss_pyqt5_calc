@@ -6,9 +6,11 @@ class Main(QDialog):
     def __init__(self):
         super().__init__()
         self.init_ui()
+        
 
     def init_ui(self):
         main_layout = QVBoxLayout()
+
 
         ### 각 위젯을 배치할 레이아웃을 미리 만들어 둠
         layout_operation = QHBoxLayout()
@@ -25,7 +27,6 @@ class Main(QDialog):
         ### layout_equation_solution 레이아웃에 수식, 답 위젯을 추가
         layout_equation_solution.addRow(label_SumIO, self.SumIO)
     
-
 
 
 
@@ -66,6 +67,8 @@ class Main(QDialog):
         layout_clear_equal.addWidget(button_clear)
         layout_clear_equal.addWidget(button_backspace)
         layout_clear_equal.addWidget(button_equal)
+
+
 
 
 
@@ -139,6 +142,8 @@ class Main(QDialog):
         equation = self.SumIO.text()
         equation = equation[:-1]
         self.SumIO.setText(equation)
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
