@@ -7,7 +7,7 @@ class Main(QDialog):
     def __init__(self):
         super().__init__()
         self.init_ui()
-        
+
 
     def init_ui(self):
         main_layout = QVBoxLayout()
@@ -23,15 +23,13 @@ class Main(QDialog):
         layout_number = QGridLayout()
         layout_equation_solution = QFormLayout()
 
-        
+
         # issue 1번(#1) 숫자 입력 / 표시 부분 통합
         ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
         label_SumIO = QLabel("Linear Algebra: ")
         self.SumIO = QLineEdit("")
         ### layout_equation_solution 레이아웃에 수식, 답 위젯을 추가
         layout_equation_solution.addRow(label_SumIO, self.SumIO)
-    
-
 
 
 
@@ -70,8 +68,6 @@ class Main(QDialog):
 
 
 
-
-
         ### %, C, CE, 1/x, x^2, 2√x 버튼 생성
         button_rest = QPushButton("%")
         button_ClearEntry = QPushButton("CE")
@@ -101,8 +97,6 @@ class Main(QDialog):
 
 
 
-
-
         ### 숫자 버튼 생성하고, layout_number 레이아웃에 추가
         ### 각 숫자 버튼을 클릭했을 때, 숫자가 수식창에 입력 될 수 있도록 시그널 설정
         number_button_dict = {}
@@ -119,8 +113,6 @@ class Main(QDialog):
 
 
 
-
-
         ### 소숫점 버튼과 00 버튼을 입력하고 시그널 설정
         button_dot = QPushButton(".")
         button_dot.clicked.connect(lambda state, num = ".": self.number_button_clicked(num))
@@ -129,8 +121,6 @@ class Main(QDialog):
         button_double_zero = QPushButton("00")
         button_double_zero.clicked.connect(lambda state, num = "00": self.number_button_clicked(num))
         layout_number.addWidget(button_double_zero, 5, 0)
-
-
 
 
 
@@ -157,26 +147,66 @@ class Main(QDialog):
     #################
     ### functions ###
     #################
-    
-    
-    
-    
+
+
+
+### 숫자 버튼 클릭 시 SumIO에 숫자 입력.
     def number_button_clicked(self, num):
         algebra = self.SumIO.text()
         algebra += str(num)
         self.SumIO.setText(algebra)
 
+
+### button operation이랑 button rest는 모두 button equal을 눌렀을 때 계산이 되는 이항연산자.
     def button_operation_clicked(self, operation):
-        global number
-        global oper
+        global number, oper
         number= self.SumIO.text()
         oper = operation
         self.SumIO.setText("")
-        
+
+
+    def button_rest_clicked(self, operation):
+        global num, oper
+        num= self.SumIO.text()
+        oper = operation
+        self.SumIO.setText("")
+
+
+### 아래 전부 일항 연산자.
+    def button_inverse_clicked(self):
+        num = 1/ int(self.SumIO.text())
+        self.SumIO.setText(str(num))
+
+
+    def button_square_clicked(self):
+        num = int(self.SumIO.text()) **2
+        self.SumIO.setText(str(num))
+
+
+    def button_root_clicked(self):
+        num = math.sqrt(int(self.SumIO.text()))        
+        self.SumIO.setText(str(num))
+
+
+### clear는 그냥 clear
+    def button_clear_clicked(self):
+        self.SumIO.setText("")
+
+
+    def button_backspace_clicked(self):
+        equation = self.SumIO.text()
+        equation = equation[:-1]
+        self.SumIO.setText(equation)
+
+
+
+
+
 
     #클릭 부분 eval 빼고 연산으로 수정.
     def button_equal_clicked(self):
         algebra = self.SumIO.text()
+
         if oper == "+":
             solution = int(number) + int(algebra)
         if oper == "-":
@@ -187,47 +217,9 @@ class Main(QDialog):
             solution = int(number) / int(algebra)
         if oper == "%":
             solution = int(number) % int(algebra)
+
         self.SumIO.setText(str(solution))
-        
-        
-        
-    def button_clear_clicked(self):
-        self.SumIO.setText("")
-        self.SumIO.setText("")
 
-    def button_backspace_clicked(self):
-        equation = self.SumIO.text()
-        equation = equation[:-1]
-        self.SumIO.setText(equation)
-        
-        
-        
-        
-        
-    def button_rest_clicked(self, operation):
-        global number
-        global oper
-        number= self.SumIO.text()
-        oper = operation
-        self.SumIO.setText("")
-            
-    def button_inverse_clicked(self):
-        tmpnum = self.SumIO.text()
-        
-        tmpnum = 1 / int(tmpnum)
-        self.SumIO.setText(str(tmpnum))
-        
-    def button_square_clicked(self):
-        tmpnum = self.SumIO.text()
-        tmpnum = int(tmpnum) ** 2
-        
-        self.SumIO.setText(str(tmpnum))
-
-    def button_root_clicked(self):
-        tmpnum = self.SumIO.text()
-        tmpnum = math.sqrt(int(tmpnum))
-        
-        self.SumIO.setText(str(tmpnum))
 
 
 
