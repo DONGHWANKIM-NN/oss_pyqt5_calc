@@ -166,16 +166,31 @@ class Main(QDialog):
         algebra += str(num)
         self.SumIO.setText(algebra)
 
-    def button_operation_clicked(self, operation):  # 이 친구 수정해서 숫자 없어지게 수정할 필요 있음.
-        algebra = self.SumIO.text()
-        algebra += operation
-        self.SumIO.setText(algebra)
+    def button_operation_clicked(self, operation):
+        global number
+        global oper
+        number= self.SumIO.text()
+        oper = operation
+        self.SumIO.setText("")
+        
 
+    #클릭 부분 eval 빼고 연산으로 수정.
     def button_equal_clicked(self):
-        equation = self.SumIO.text()
-        solution = eval(equation)
+        algebra = self.SumIO.text()
+        if oper == "+":
+            solution = int(number) + int(algebra)
+        if oper == "-":
+            solution = int(number) - int(algebra)
+        if oper == "*":
+            solution = int(number) * int(algebra)
+        if oper == "/":
+            solution = int(number) / int(algebra)
+        if oper == "%":
+            solution = int(number) % int(algebra)
         self.SumIO.setText(str(solution))
-
+        
+        
+        
     def button_clear_clicked(self):
         self.SumIO.setText("")
         self.SumIO.setText("")
