@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import *
+import math
 
 
 class Main(QDialog):
@@ -76,16 +77,25 @@ class Main(QDialog):
         button_ClearEntry = QPushButton("CE")
         button_Clear = QPushButton("C")
         button_inverse = QPushButton("1/x")
-        button_pow = QPushButton("x^2")
+        button_square = QPushButton("x^2")
         button_root = QPushButton("√x")
+        
+        
+        ### %, Clear, Clear Entry, inverse, square, root 버튼  클릭 시 시그널 설정
+        button_rest.clicked.connect(lambda state, operation = "%": self.button_rest_clicked(operation))
+        button_ClearEntry.clicked.connect(self.button_clear_clicked)
+        button_Clear.clicked.connect(self.button_clear_clicked)
+        button_inverse.clicked.connect(self.button_inverse_clicked)
+        button_square.clicked.connect(self.button_square_clicked)
+        button_root.clicked.connect(self.button_root_clicked)
 
 
-        ### %, C, CE, 1/x, x^2, 2√x 버튼을 layout_clear_equal 레이아웃에 추가
+        ### %, Clear, Clear Entry, inverse, square, root 버튼 layout_clear_equal 레이아웃에 추가
         layout_clear_equal.addWidget(button_rest, 0 ,0)
         layout_clear_equal.addWidget(button_Clear, 0, 1)
         layout_clear_equal.addWidget(button_ClearEntry,0 ,2)
         layout_clear_equal.addWidget(button_inverse, 1 ,0)
-        layout_clear_equal.addWidget(button_pow, 1, 1)
+        layout_clear_equal.addWidget(button_square, 1, 1)
         layout_clear_equal.addWidget(button_root,1 ,2)
 
 
@@ -174,6 +184,35 @@ class Main(QDialog):
         equation = self.SumIO.text()
         equation = equation[:-1]
         self.SumIO.setText(equation)
+        
+        
+        
+        
+        
+    def button_rest_clicked(self, operation):
+        global number
+        global oper
+        number= self.SumIO.text()
+        oper = operation
+        self.SumIO.setText("")
+            
+    def button_inverse_clicked(self):
+        tmpnum = self.SumIO.text()
+        
+        tmpnum = 1 / int(tmpnum)
+        self.SumIO.setText(str(tmpnum))
+        
+    def button_square_clicked(self):
+        tmpnum = self.SumIO.text()
+        tmpnum = int(tmpnum) ** 2
+        
+        self.SumIO.setText(str(tmpnum))
+
+    def button_root_clicked(self):
+        tmpnum = self.SumIO.text()
+        tmpnum = math.sqrt(int(tmpnum))
+        
+        self.SumIO.setText(str(tmpnum))
 
 
 
