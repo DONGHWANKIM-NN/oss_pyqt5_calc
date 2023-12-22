@@ -157,15 +157,30 @@ class Main(QDialog):
         self.SumIO.setText(algebra)
 
     def button_operation_clicked(self, operation):
-        equation = self.SumIO.text()
-        equation += operation
-        self.SumIO.setText(equation)
+        global number
+        global oper
+        number= self.SumIO.text()
+        oper = operation
+        self.SumIO.setText("")
+        
 
+    #클릭 부분 eval 빼고 연산으로 수정.
     def button_equal_clicked(self):
-        equation = self.SumIO.text()
-        solution = eval(equation)
+        algebra = self.SumIO.text()
+        if oper == "+":
+            solution = int(number) + int(algebra)
+        if oper == "-":
+            solution = int(number) - int(algebra)
+        if oper == "*":
+            solution = int(number) * int(algebra)
+        if oper == "/":
+            solution = int(number) / int(algebra)
+        if oper == "%":
+            solution = int(number) % int(algebra)
         self.SumIO.setText(str(solution))
-
+        
+        
+        
     def button_clear_clicked(self):
         self.SumIO.setText("")
         self.SumIO.setText("")
