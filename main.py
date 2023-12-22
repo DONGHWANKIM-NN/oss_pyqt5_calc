@@ -159,8 +159,8 @@ class Main(QDialog):
 
 ### button operation이랑 button rest는 모두 button equal을 눌렀을 때 계산이 되는 이항연산자.
     def button_operation_clicked(self, operation):
-        global number, oper
-        number= self.SumIO.text()
+        global num, oper
+        num= self.SumIO.text()
         oper = operation
         self.SumIO.setText("")
 
@@ -208,15 +208,15 @@ class Main(QDialog):
         algebra = self.SumIO.text()
 
         if oper == "+":
-            solution = int(number) + int(algebra)
+            solution = int(num) + int(algebra)
         if oper == "-":
-            solution = int(number) - int(algebra)
+            solution = int(num) - int(algebra)
         if oper == "*":
-            solution = int(number) * int(algebra)
+            solution = int(num) * int(algebra)
         if oper == "/":
-            solution = int(number) / int(algebra)
+            solution = int(num) / int(algebra)
         if oper == "%":
-            solution = int(number) % int(algebra)
+            solution = int(num) % int(algebra)
 
         self.SumIO.setText(str(solution))
 
