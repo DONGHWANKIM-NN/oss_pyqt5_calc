@@ -174,17 +174,17 @@ class Main(QDialog):
 
 ### 아래 전부 일항 연산자.
     def button_inverse_clicked(self):
-        num = 1/ int(self.SumIO.text())
+        num = 1/ float(self.SumIO.text())
         self.SumIO.setText(str(num))
 
 
     def button_square_clicked(self):
-        num = int(self.SumIO.text()) **2
+        num = float(self.SumIO.text()) **2
         self.SumIO.setText(str(num))
 
 
     def button_root_clicked(self):
-        num = math.sqrt(int(self.SumIO.text()))        
+        num = math.sqrt(float(self.SumIO.text()))        
         self.SumIO.setText(str(num))
 
 
@@ -208,15 +208,15 @@ class Main(QDialog):
         algebra = self.SumIO.text()
 
         if oper == "+":
-            solution = int(num) + int(algebra)
+            solution = float(num) + float(algebra)
         if oper == "-":
-            solution = int(num) - int(algebra)
+            solution = float(num) - float(algebra)
         if oper == "*":
-            solution = int(num) * int(algebra)
+            solution = float(num) * float(algebra)
         if oper == "/":
-            solution = int(num) / int(algebra)
+            solution = float(num) / float(algebra)
         if oper == "%":
-            solution = int(num) % int(algebra)
+            solution = float(num) % float(algebra)
 
         self.SumIO.setText(str(solution))
 
