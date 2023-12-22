@@ -10,3 +10,4 @@ OSS 수업시간 과제.
 ## Getting started
 - pyqt5 모듈 설치 (python -m pip install pyqt5)
 - 파이썬 파일 실행 (python main.py)
+
