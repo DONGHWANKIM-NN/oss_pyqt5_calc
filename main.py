@@ -166,10 +166,10 @@ class Main(QDialog):
         algebra += str(num)
         self.SumIO.setText(algebra)
 
-    def button_operation_clicked(self, operation):
-        equation = self.SumIO.text()
-        equation += operation
-        self.SumIO.setText(equation)
+    def button_operation_clicked(self, operation):  # 이 친구 수정해서 숫자 없어지게 수정할 필요 있음.
+        algebra = self.SumIO.text()
+        algebra += operation
+        self.SumIO.setText(algebra)
 
     def button_equal_clicked(self):
         equation = self.SumIO.text()
