@@ -12,7 +12,7 @@ class Main(QDialog):
         main_layout = QVBoxLayout()
         
         integratelayout1_layout = QVBoxLayout()
-        integratelayout2_layout = QHBoxLayout()
+        integratelayout2_layout = QHBoxLayout() 
 
 
 
@@ -25,7 +25,7 @@ class Main(QDialog):
         
         # issue 1번(#1) 숫자 입력 / 표시 부분 통합
         ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
-        label_SumIO = QLabel("Line: ")
+        label_SumIO = QLabel("Linear Algebra: ")
         self.SumIO = QLineEdit("")
         ### layout_equation_solution 레이아웃에 수식, 답 위젯을 추가
         layout_equation_solution.addRow(label_SumIO, self.SumIO)
@@ -152,9 +152,9 @@ class Main(QDialog):
     
     
     def number_button_clicked(self, num):
-        equation = self.SumIO.text()
-        equation += str(num)
-        self.SumIO.setText(equation)
+        algebra = self.SumIO.text()
+        algebra += str(num)
+        self.SumIO.setText(algebra)
 
     def button_operation_clicked(self, operation):
         equation = self.SumIO.text()
