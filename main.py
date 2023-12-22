@@ -1,18 +1,19 @@
 import sys
 from PyQt5.QtWidgets import *
+import math
 
 
 class Main(QDialog):
     def __init__(self):
         super().__init__()
         self.init_ui()
-        
+
 
     def init_ui(self):
         main_layout = QVBoxLayout()
         
         integratelayout1_layout = QVBoxLayout()
-        integratelayout2_layout = QHBoxLayout()
+        integratelayout2_layout = QHBoxLayout() 
 
 
 
@@ -22,15 +23,13 @@ class Main(QDialog):
         layout_number = QGridLayout()
         layout_equation_solution = QFormLayout()
 
-        
+
         # issue 1번(#1) 숫자 입력 / 표시 부분 통합
         ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
-        label_SumIO = QLabel("Line: ")
+        label_SumIO = QLabel("Linear Algebra: ")
         self.SumIO = QLineEdit("")
         ### layout_equation_solution 레이아웃에 수식, 답 위젯을 추가
         layout_equation_solution.addRow(label_SumIO, self.SumIO)
-    
-
 
 
 
@@ -69,26 +68,31 @@ class Main(QDialog):
 
 
 
-
-
         ### %, C, CE, 1/x, x^2, 2√x 버튼 생성
         button_rest = QPushButton("%")
         button_ClearEntry = QPushButton("CE")
         button_Clear = QPushButton("C")
         button_inverse = QPushButton("1/x")
-        button_pow = QPushButton("x^2")
+        button_square = QPushButton("x^2")
         button_root = QPushButton("√x")
+        
+        
+        ### %, Clear, Clear Entry, inverse, square, root 버튼  클릭 시 시그널 설정
+        button_rest.clicked.connect(lambda state, operation = "%": self.button_rest_clicked(operation))
+        button_ClearEntry.clicked.connect(self.button_clear_clicked)
+        button_Clear.clicked.connect(self.button_clear_clicked)
+        button_inverse.clicked.connect(self.button_inverse_clicked)
+        button_square.clicked.connect(self.button_square_clicked)
+        button_root.clicked.connect(self.button_root_clicked)
 
 
-        ### %, C, CE, 1/x, x^2, 2√x 버튼을 layout_clear_equal 레이아웃에 추가
+        ### %, Clear, Clear Entry, inverse, square, root 버튼 layout_clear_equal 레이아웃에 추가
         layout_clear_equal.addWidget(button_rest, 0 ,0)
         layout_clear_equal.addWidget(button_Clear, 0, 1)
         layout_clear_equal.addWidget(button_ClearEntry,0 ,2)
         layout_clear_equal.addWidget(button_inverse, 1 ,0)
-        layout_clear_equal.addWidget(button_pow, 1, 1)
+        layout_clear_equal.addWidget(button_square, 1, 1)
         layout_clear_equal.addWidget(button_root,1 ,2)
-
-
 
 
 
@@ -109,8 +113,6 @@ class Main(QDialog):
 
 
 
-
-
         ### 소숫점 버튼과 00 버튼을 입력하고 시그널 설정
         button_dot = QPushButton(".")
         button_dot.clicked.connect(lambda state, num = ".": self.number_button_clicked(num))
@@ -119,8 +121,6 @@ class Main(QDialog):
         button_double_zero = QPushButton("00")
         button_double_zero.clicked.connect(lambda state, num = "00": self.number_button_clicked(num))
         layout_number.addWidget(button_double_zero, 5, 0)
-
-
 
 
 
@@ -147,33 +147,79 @@ class Main(QDialog):
     #################
     ### functions ###
     #################
-    
-    
-    
-    
+
+
+
+### 숫자 버튼 클릭 시 SumIO에 숫자 입력.
     def number_button_clicked(self, num):
-        equation = self.SumIO.text()
-        equation += str(num)
-        self.SumIO.setText(equation)
+        algebra = self.SumIO.text()
+        algebra += str(num)
+        self.SumIO.setText(algebra)
 
+
+### button operation이랑 button rest는 모두 button equal을 눌렀을 때 계산이 되는 이항연산자.
     def button_operation_clicked(self, operation):
-        equation = self.SumIO.text()
-        equation += operation
-        self.SumIO.setText(equation)
+        global num, oper
+        num= self.SumIO.text()
+        oper = operation
+        self.SumIO.setText("")
 
-    def button_equal_clicked(self):
-        equation = self.SumIO.text()
-        solution = eval(equation)
-        self.SumIO.setText(str(solution))
 
+    def button_rest_clicked(self, operation):
+        global num, oper
+        num= self.SumIO.text()
+        oper = operation
+        self.SumIO.setText("")
+
+
+### 아래 전부 일항 연산자.
+    def button_inverse_clicked(self):
+        num = 1/ int(self.SumIO.text())
+        self.SumIO.setText(str(num))
+
+
+    def button_square_clicked(self):
+        num = int(self.SumIO.text()) **2
+        self.SumIO.setText(str(num))
+
+
+    def button_root_clicked(self):
+        num = math.sqrt(int(self.SumIO.text()))        
+        self.SumIO.setText(str(num))
+
+
+### clear는 그냥 clear
     def button_clear_clicked(self):
         self.SumIO.setText("")
-        self.SumIO.setText("")
+
 
     def button_backspace_clicked(self):
         equation = self.SumIO.text()
         equation = equation[:-1]
         self.SumIO.setText(equation)
+
+
+
+
+
+
+    #클릭 부분 eval 빼고 연산으로 수정.
+    def button_equal_clicked(self):
+        algebra = self.SumIO.text()
+
+        if oper == "+":
+            solution = int(num) + int(algebra)
+        if oper == "-":
+            solution = int(num) - int(algebra)
+        if oper == "*":
+            solution = int(num) * int(algebra)
+        if oper == "/":
+            solution = int(num) / int(algebra)
+        if oper == "%":
+            solution = int(num) % int(algebra)
+
+        self.SumIO.setText(str(solution))
+
 
 
 
