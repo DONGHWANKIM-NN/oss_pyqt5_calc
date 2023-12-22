@@ -25,4 +25,4 @@ OSS 수업시간 과제.
 Check out the LICENSE file
 
 ## Contributing
-You don't
+__You don't__
